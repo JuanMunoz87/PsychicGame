@@ -20,68 +20,63 @@ let randomLetter;
 // Update the player's wins
 
 const scoreUpdate = function() {
-    winsText.innerHTML = wins;
+   winsText.innerHTML = wins;
 };
 scoreUpdate();
 
 // Update the losses
 const loseUpdate = function() {
-    lossesText.innerHTML = losses;
+   lossesText.innerHTML = losses;
 };
 loseUpdate();
 
+// Update the player ramining numbers
 const remainGuessUpdate = function() {
-    remainGuess.innerHTML = remainingGuess;
+   remainGuess.innerHTML = remainingGuess;
 };
 
 // Update the the player guess
 const guessesUpdate = function() {
-    userGuessSoFarText.innerHTML = playerGuessesSoFar.join(" ");
+   userGuessSoFarText.innerHTML = playerGuessesSoFar.join(" ");
 };
+guessesUpdate();
 
-
-// Reset 
+//=== Reset ===// 
 const reset = function() {
-    remainingGuess = 8;
-    playerGuessesSoFar = [];
-    // Random letter generator
-    randomLetter = compLetter[Math.floor(Math.random() * compLetter.length)];
-    console.log(`random letter: ${randomLetter}`);
-    guessesUpdate();
-    remainGuessUpdate();
+   remainingGuess = 8;
+   playerGuessesSoFar = [];
+   // Random letter generator
+   randomLetter = compLetter[Math.floor(Math.random() * compLetter.length)];
+   console.log(randomLetter)
+   guessesUpdate();
+   remainGuessUpdate();
 };
 reset();
 
 //================== Main Progress ================//
 // key event function
 document.onkeyup = function(event) {
-    remainingGuess--;
     
-    let playerGuess = event.key;
+   remainingGuess--;
+    
+   let playerGuess = event.key;
    
-    playerGuessesSoFar.push(playerGuess);
+   playerGuessesSoFar.push(playerGuess);
 
-    guessesUpdate();
-    remainGuessUpdate();
+   guessesUpdate();
+   remainGuessUpdate();
 
-    if((remainingGuess > 0) || (remainingGuess === 0 )) {
-        if(playerGuess === randomLetter) {
-        wins++;
-        scoreUpdate();
-        reset();
-        }  else if(remainingGuess === 0) {
-            losses++;
-            loseUpdate();
-            reset();
-        }
-    }
+   if((remainingGuess > 0) || (remainingGuess === 0 )) {
+      if(playerGuess === randomLetter) {
+      wins++;
+      scoreUpdate();
+      reset();
+      } else if(remainingGuess === 0) {
+         losses++;
+         loseUpdate();
+         reset();
+      }
+   }
 
 };
-
-
-
-
-
-
-
 
